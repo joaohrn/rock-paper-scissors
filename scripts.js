@@ -18,8 +18,31 @@ function playRound(playerSelection, computerSelection) {
       computerSelection == `paper`) ||
     (playerSelection.toLowerCase() == `paper` && computerSelection == `rock`)
   ) {
-    return `You win ${playerSelection} beats ${computerSelection}`;
+    return true;
   } else {
-    return `You lose ${computerSelection} beats ${playerSelection}`;
+    return false;
+  }
+}
+
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+  let playerSelection;
+  let computerSelection;
+  for (let i = 0; i < 5; i++) {
+    playerSelection = prompt("Choose: rock, paper or scissors?");
+    computerSelection = getComputerChoice();
+    if (playRound(playerSelection, getComputerChoice())) {
+      playerScore += 1;
+      console.log(`You win ${playerSelection} beats ${computerSelection}`);
+    } else {
+      computerScore += 1;
+      console.log(`You lose ${computerSelection} beats ${playerSelection}`);
+    }
+  }
+  if (playerScore > computerScore) {
+    console.log(`You win!!! ${playerScore} against ${computerScore}`);
+  } else {
+    console.log(`You lose!!! ${playerScore} against ${computerScore}`);
   }
 }
